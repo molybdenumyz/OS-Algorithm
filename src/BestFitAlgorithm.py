@@ -12,8 +12,10 @@ def BF(process_num: int, memory_need: int):
             free_memory_list[i][1] += memory_need
             sort_free_part(i)
             break
-
-    print("process:", process_num, "alloc memory:", memory_need, "success")
+    if(start_address == 0):
+        print("process:", process_num, "alloc memory:", memory_need, "fail")
+    else:
+        print("process:", process_num, "alloc memory:", memory_need, "success")
 
     print_partition()
 
