@@ -22,7 +22,7 @@ def FF(process_num: int, memory_need: int):
             start_memory_address = 0
 
     if (find_memory_now < memory_need):
-        print("not enough storage")
+        print("process:", process_num, "alloc memory:", memory_need, "fail")
 
     elif (find_memory_now == memory_need):
         alloc(process_num, memory_need, start_memory_address)
