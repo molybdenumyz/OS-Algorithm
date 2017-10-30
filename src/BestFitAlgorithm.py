@@ -1,18 +1,23 @@
-MAX_MEMORY = 640
+# -*- coding: utf-8 -*-
 
-free_memory_list = [[640, 1, 640]]
+MAX_MEMORY = 640
+START_MEMORY = 1
+free_memory_list = [[MAX_MEMORY, START_MEMORY, MAX_MEMORY]]
 
 
 def BF(process_num: int, memory_need: int):
-    start_address = 0
+    start_address = -1
     for i in range(len(free_memory_list)):
         if (free_memory_list[i][0] >= memory_need):
             free_memory_list[i][0] -= memory_need
             start_address = free_memory_list[i][1]
             free_memory_list[i][1] += memory_need
-            sort_free_part(i)
+            if(free_memory_list[i][0] == 0):
+                free_memory_list.pop(i)
+            else:
+                sort_free_part(i)
             break
-    if(start_address == 0):
+    if(start_address == -1):
         print("process:", process_num, "alloc memory:", memory_need, "fail")
     else:
         print("process:", process_num, "alloc memory:", memory_need, "success")
