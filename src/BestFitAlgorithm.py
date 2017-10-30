@@ -28,8 +28,7 @@ def BF(process_num: int, memory_need: int):
 
 
 def free(process_num: int, memory_free: int, start_address: int):
-
-    free_memory_list.insert(len(free_memory_list)-1, [memory_free, start_address, start_address + memory_free - 1])
+    free_memory_list.insert(len(free_memory_list) - 1, [memory_free, start_address, start_address + memory_free - 1])
     merge_part()
     print("process:", process_num, "free memory:", memory_free, "success")
     print_partition()
@@ -46,12 +45,6 @@ def sort_free_part(start_index: int):
             break
 
 
-
-
-def sort_by_address():
-    print()
-
-
 def print_partition():
     print("================================================================")
     for i in free_memory_list:
@@ -63,19 +56,19 @@ def merge_part():
     free_memory_list.sort(key=lambda start_address: start_address[1])
 
     for i in range(len(free_memory_list) - 1):
-        if(i < len(free_memory_list) -1):
-            if (free_memory_list[i][2] == free_memory_list[i+1][1] -1):
-                free_memory_list[i][2] = free_memory_list[i+1][2]
-                free_memory_list[i][0] += free_memory_list[i+1][0]
-                free_memory_list.pop(i+1)
-    if(free_memory_list[len(free_memory_list) - 1][1] == free_memory_list[len(free_memory_list) - 2][2]+1):
-        free_memory_list[len(free_memory_list - 2)][2] = free_memory_list[len(free_memory_list) -1][2]
+        if (i < len(free_memory_list) - 1):
+            if (free_memory_list[i][2] == free_memory_list[i + 1][1] - 1):
+                free_memory_list[i][2] = free_memory_list[i + 1][2]
+                free_memory_list[i][0] += free_memory_list[i + 1][0]
+                free_memory_list.pop(i + 1)
+    if (free_memory_list[len(free_memory_list) - 1][1] == free_memory_list[len(free_memory_list) - 2][2] + 1):
+        free_memory_list[len(free_memory_list - 2)][2] = free_memory_list[len(free_memory_list) - 1][2]
         free_memory_list[len(free_memory_list) - 2][0] += free_memory_list[len(free_memory_list) - 1][0]
     free_memory_list.sort(key=lambda size: size[0])
 
+
 if __name__ == '__main__':
     address = [0 for i in range(1, 10)]
-
     address[1] = BF(1, 130)
     address[2] = BF(2, 60)
     address[3] = BF(3, 100)
